@@ -1,0 +1,143 @@
+﻿﻿@{
+    ViewData["Title"] = "Home Page";
+}
+<div class="nomeCognome">
+
+     <h1>nomeCognome</h1>
+
+    <p>1. Dichiarare una variabile valorizzandola con il nostro nome.
+    Dichiarare un'altra variabile valorizzandola con il nostro cognome.
+    Stampare il nostro nome e cognome all'interno di un tag h2.
+    </p>
+
+    @{
+        string nome = "Davide";
+        string cognome = "Piroddi";
+    }
+    <h4 class="fs-1 fw-bold">@nome @cognome</h4>
+    <hr />
+</div>
+
+<div class="sommaNumeri">
+
+    <h1>sommaNumeri</h1>
+
+    <p>2. Creare una funzione che stampa la somma dei numeri che vanno da 1 a n (con n passato come parametro - n incluso. Stampare dentro uno span il risultato.</p>
+
+    @{
+        int n = 5;
+
+
+        int Somma(int n)
+        {
+            int sum = 0;
+            for (int i=0; i<=n; i++)
+                {
+                    sum += i;
+                }
+            return sum;
+        }
+    }
+    <h3>somma dei numeri che vanno da 1 a @n: @Somma(n)</h3>
+    <hr />
+</div>
+
+<div class="quantitaLettera">
+
+    <h1>quantitaLettera</h1>
+
+    <p>3. Contare quante volte la lettera a è presente nalla frase "nel mezzo del cammin di nostra vita" e stampare questo valore in pagina </p>
+
+    @{
+                    char lettera = 'a';
+                    string frase = "nel mezzo del cammin di nostra vita";
+                }
+
+   @{
+                    int funzioneCheConta(char lettera, string frase)
+                    {
+                        int quantitaLettera = 0;
+                        frase = frase.ToLower();
+                        char[] lettere = frase.ToCharArray();
+                        for (int i = 0; i < frase.Length; i++)
+                            {
+                                if(lettera == lettere[i])
+                                {
+                                    quantitaLettera++;
+                                }
+                            }
+                        return quantitaLettera;
+                    }
+                }
+                
+                <h3>la lettera "a" è presente @funzioneCheConta(lettera, frase) volte</h3>
+                <hr />
+</div>
+
+<div class="numeriRandom">
+
+    <h1>numeriRandom</h1>
+
+    <p>4. Creare una List<int> di 20 numeri interi (generati random da 1 a 90, 1 e 90 inclusi) e mostrare in pagina solo i numeri compresi tra 20 e 70</p>
+
+
+        @{
+            List<int> numeriInteri = new List<int>();
+
+            Random random = new Random();
+
+            for(int i =0; i<20; i++)
+                {
+                    int numeroRandom = random.Next(1, 91);
+                    numeriInteri.Add(numeroRandom);
+                }
+        }
+
+        @foreach(int numeroRandomicoSlezionato in numeriInteri)
+            {
+                @if(numeroRandomicoSlezionato > 20 && numeroRandomicoSlezionato < 70)
+                    {
+                        <h3>Numeri random: @numeroRandomicoSlezionato</h3>
+                    }
+            }
+        <hr />
+</div>
+
+<div class="dataOra">
+
+    <h1>dataOra</h1>
+
+    <p>5. Stampare in pagina la data e l'ora attuale (usando la classe DateTime) con il formato anno-mese-giorno ore:minuti:secondi</p>
+
+    @{
+            var dataOraAttuale = DateTime.Now;
+        }
+        <h3>@dataOraAttuale.ToString("dd-MM-yyyy- HH:mm")</h3>
+        <h3>@dataOraAttuale.Year / @dataOraAttuale.Month / @dataOraAttuale.Day / @dataOraAttuale.Hour : @dataOraAttuale.Minute / @dataOraAttuale.Second</h3>
+
+        <hr />
+</div>
+
+<div class="operazioniConData">
+
+    <h1>operazioniConData</h1>
+
+    <p>6. Partendo dalla data di oggi (usando la classe DateTime) stampare in pagina
+            a. la data di 7 giorni fa
+            b. che giorno della settimana è oggi (il risultato dovrà essere il nome del giorno (Lunedì, Martedì, ...)
+            c. che giorno della settimana sarà nello stesso giorno e mese di oggi ma tra un anno (il risultato dovrà essere il nome del giorno (Lunedì, Martedì, ...)</p>
+
+@{
+            var dataDiOggi = DateTime.Now;
+            DateTime dataDi7GiorniFa = dataDiOggi.AddDays(-7);
+            DateTime dataDiOggiTraUnAnno = dataDiOggi.AddYears(1);
+
+
+        }
+
+        <h3>Una settimana fa era: @dataDi7GiorniFa</h3>
+        <h3>Oggi è: @dataDiOggi.ToString("dddd")</h3>
+        <h3>Tra un anno lo stesso giorno sarà: @dataDiOggiTraUnAnno.ToString("dddd")</h3>
+
+
+</div>

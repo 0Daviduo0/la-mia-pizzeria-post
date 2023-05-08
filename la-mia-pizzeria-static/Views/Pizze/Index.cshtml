@@ -1,0 +1,23 @@
+﻿@using la_mia_pizzeria_static.Controllers;
+
+    @{
+        @model List<PizzeList>  
+    }
+     <a href="@Url.Action("Create", "Pizze")">Crea altre pizze</a>
+     <p>Ecco quì il menù della pizza pazza Amogus sus.</p>
+     <div class="menuContainer">
+
+        @foreach (PizzeList p in Model)
+        {
+           
+              <div class="pizzaContainer">
+                <h2>@p.Nome</h2>
+                <img src="@p.Img" alt="Pizza">
+                <a href="@Url.Action("Details", "Pizze", new {id = @p.Id})">Mostra Dettagli</a>
+                <p>Prezzo: @p.Price</p>
+              </div>
+           
+        }
+
+     </div>
+     
